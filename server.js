@@ -19,9 +19,10 @@ app.get("*", (req, res) => {
   const urlPathName = url.parse(req.url,true).pathname;
   const PersonasURL = 'https://profiles.segment.com' + urlPathName;
 
-  request({ url: PersonasURL, method: req.method, json: req.body, headers: {'Authorization': "Basic cHZJSzI5UGRMSzhXelNvODFiM2VFWG0yemk2RlhQNDJQbWdvWVN5SzNiX2dFM0JwdGxiclZibEQ5ZnJqdk5GbkROWmpVN0N3NDRRNjZuWDZKclByZ01QVmlDSkd1VTBaSGlmaEozSDRUVVcwMmQ0MGhmLWQyUzBOQXMyczNDcXd4V1lRNnVpOTlTS2lfd21DTDZUWjZpTV8waEVXUG9zVC0ycGdVdnp0alVZLVpDNUN1aDg2UEhCYXlBc2FJWHZFeG0xTzh2RkhrZWItOg=="} },
+  request({ url: PersonasURL, method: req.method, json: req.body, headers: {'Authorization': req.headers["authorization"]} },
       function (error, response, body) {
-          console.log("URL: "+PersonasURL)
+          //console.log("Headers: "+req.headers["authorization"]);
+          //console.log("URL: "+PersonasURL)
           if (error) {
               console.error('error: ' + response.statusCode)
           }

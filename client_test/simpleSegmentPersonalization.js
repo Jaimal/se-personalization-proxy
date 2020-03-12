@@ -25,12 +25,12 @@ function getTraits(id, callback) {
       type: 'GET',
       data: {},
       headers: {
-          "Authorization": 'Basic ' + PERSONAS_KEY,   //If your header name has spaces or any other char not appropriate
+          "Authorization": 'Basic ' + btoa(PERSONAS_KEY+":"),   //If your header name has spaces or any other char not appropriate
       },
       dataType: 'json',
       success: function (data) {
           console.info(data);
-          drawPersonalization(data);
+          callback(data);
       }
   });
 }
@@ -72,12 +72,12 @@ var currentAnonymousId = unescape(getCookie('ajs_anonymous_id')).replace(/['"]+/
 
 jQuery(document).ready(function () {
   window.scrollTo(0,0);
-  if(currentAnonymousId) {
-    runPersonalization(currentAnonymousId);
-  } else {
-    console.log('No anonymous_id set!');
-  }
-
+  // if(currentAnonymousId) {
+  //   runPersonalization(currentAnonymousId);
+  // } else {
+  //   console.log('No anonymous_id set!');
+  // }
+  runPersonalization(currentAnonymousId);
 });
 
 console.log('AnonymousID: ' + currentAnonymousId);
