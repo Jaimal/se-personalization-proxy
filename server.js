@@ -17,7 +17,8 @@ app.use((req, res, next) => {
 
 app.get("*", (req, res) => {
   const urlPathName = url.parse(req.url,true).pathname;
-  const PersonasURL = 'https://profiles.segment.com' + urlPathName;
+  const queryString = url.parse(req.url,true).search;
+  const PersonasURL = 'https://profiles.segment.com' + urlPathName + queryString;
 
   request({ url: PersonasURL, method: req.method, json: req.body, headers: {'Authorization': req.headers["authorization"]} },
       function (error, response, body) {
